@@ -20,5 +20,15 @@
         "type": "shell",
         "inline": ["sleep 30", "sudo apt update", "sudo apt install wordpress -y"]
       }
+    ],
+    "post-processors": [
+      {
+        "type": "manifest",
+        "output": "output.json"
+      },
+      {
+        "type": "shell-local",
+        "inline": ["echo output.json"]
+      }
     ]
   }
