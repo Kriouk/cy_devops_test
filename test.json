@@ -25,10 +25,6 @@
       {
         "type": "manifest",
         "output": "output.json"
-      },
-      {
-        "type": "shell-local",
-        "inline": ["cat output.json"]
       }
     ]
   }
