@@ -9,10 +9,16 @@
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "eu-west-3",
-        "source_ami": "ami-00dd995cb6f0a5219",
+        "source_ami": "ami-0a0d71ff90f62f72a",
         "instance_type": "t2.micro",
-        "ssh_username": "ec2-user",
+        "ssh_username": "ubuntu",
         "ami_name": "packer_AWS {{timestamp}}"
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": ["sleep 30", "sudo apt update", "sudo apt install wordpress -y"]
       }
     ]
   }
