@@ -48,5 +48,7 @@ jobs:
           target: test.json
         env:
           PACKER_LOG: 0
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
 
       # additional steps to process artifacts
