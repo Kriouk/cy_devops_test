@@ -28,7 +28,7 @@
       },
       {
         "type": "shell-local",
-        "inline": ["echo output.json"]
+        "inline": ["cat output.json"]
       }
     ]
   }
