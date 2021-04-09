@@ -47,6 +47,7 @@ jobs:
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.actor }}
-          DOCKER_REPOSITORY: "ghcr.io"
+          REPO_NAME: ${{ github.repository.name }}
+          DOCKER_REPOSITORY: "docker.pkg.github.com"
 
       # additional steps to process artifacts
