@@ -40,7 +40,7 @@ jobs:
 
       # build artifact
       - name: Build Artifact
-        run: packer build wordpress-image.json -color=false -on-error=abort
+        run: packer build -color=false -on-error=abort wordpress-image.json
         env:
           PACKER_LOG: 1
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
