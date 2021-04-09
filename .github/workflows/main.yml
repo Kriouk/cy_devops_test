@@ -33,13 +33,13 @@ jobs:
           arguments: -syntax-only
           target: wordpress-image.json
 
-      # use Packer in the Runner environment
-      - name: Use latest Packer
-        uses: hashicorp-contrib/setup-packer@v1
-
       - name: GitHub Repository in lowercase
         run: |
         echo GITHUB_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+
+      # use Packer in the Runner environment
+      - name: Use latest Packer
+        uses: hashicorp-contrib/setup-packer@v1
 
       # build artifact
       - name: Build Artifact
