@@ -35,7 +35,7 @@ jobs:
 
       - name: GitHub Repository in lowercase
         run: |
-        echo GITHUB_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+          echo GITHUB_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
 
       # use Packer in the Runner environment
       - name: Use latest Packer
