@@ -26,7 +26,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `docker_repository`}}/chammach/{{user `repository_name`}}/{{user `docker_image_name`}}",
+                "repository": "{{user `docker_repository`}}/{{user `registry_username`}}/{{user `repository_name`}}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
