@@ -17,11 +17,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": [
-                "sleep 30",
-                "sudo apt update",
-                "sudo apt install wordpress -y"
-            ]
+            "inline": "echo test"
         }
     ],
     "post-processors": [
