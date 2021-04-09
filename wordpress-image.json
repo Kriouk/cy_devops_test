@@ -1,0 +1,41 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+        "docker_repository": "{{env `DOCKER_REPOSITORY`}}",
+        "registry_username": "{{env `GITHUB_USER`}}",
+        "registry_password": "{{env `GITHUB_TOKEN`}}",
+        "docker_image": "ubuntu:20.04"
+    },
+    "builders": [
+        {
+            "type": "docker",
+            "image": "{{user `docker_image`}}",
+            "commit": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sleep 30",
+                "sudo apt update",
+                "sudo apt install wordpress -y"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-tag",
+            "repository": "{{user `docker_repository`}}",
+            "tag": "dev"
+        },
+        {
+            "type": "docker-push",
+            "login": true,
+            "login_username": "{{user `registry_username`}}",
+            "login_password": "{{user `registry_password`}}",
+            "login_server": "https://{{user `docker_repository`}}"
+        }
+    ]
+}
