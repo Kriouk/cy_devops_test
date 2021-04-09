@@ -50,7 +50,7 @@ jobs:
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
           GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.actor }}
-          GITHUB_REPO: ${{ GITHUB_REPOSITORY }}
+          GITHUB_REPO: ${{ env.GITHUB_REPOSITORY }}
           REPO_NAME: ${{ github.event.repository.name }}
           DOCKER_REPOSITORY: "docker.pkg.github.com"
 
