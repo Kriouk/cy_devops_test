@@ -45,8 +45,8 @@ jobs:
           PACKER_LOG: 1
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-          GITHUB_PASS: ${{ github.token }}
+          GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.actor }}
-          DOCKER_REPOSITORY: "docker.pkg.github.com"
+          DOCKER_REPOSITORY: "ghcr.io"
 
       # additional steps to process artifacts

@@ -5,7 +5,8 @@
         "docker_repository": "{{env `DOCKER_REPOSITORY`}}",
         "registry_username": "{{env `GITHUB_USER`}}",
         "registry_password": "{{env `GITHUB_PASS`}}",
-        "docker_image": "ubuntu:20.04"
+        "docker_image": "ubuntu:20.04",
+        "docker_image_name": "wordpress-image"
     },
     "builders": [
         {
@@ -24,7 +25,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `docker_repository`}}",
+                "repository": "{{user `docker_repository`}}/${{ github.repository_owner }}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
