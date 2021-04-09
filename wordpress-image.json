@@ -5,6 +5,7 @@
         "docker_repository": "{{env `DOCKER_REPOSITORY`}}",
         "registry_username": "{{env `GITHUB_USER`}}",
         "registry_password": "{{env `GITHUB_PASS`}}",
+        "github_repo": "{{env `GITHUB_REPO`}}",
         "repository_name": "{{env `REPO_NAME`}}",
         "docker_image": "ubuntu:20.04",
         "docker_image_name": "wordpress-image"
@@ -26,7 +27,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `docker_repository`}}/{{user `registry_username`}}/{{user `repository_name`}}/{{user `docker_image_name`}}",
+                "repository": "{{user `docker_repository`}}/{{user `github_repo`}}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
