@@ -38,6 +38,7 @@ jobs:
 
       - run: |
           cat >> main.tf << EOF
+
           terraform {
             required_providers {
               aws = {
