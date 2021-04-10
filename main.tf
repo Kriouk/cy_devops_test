@@ -8,8 +8,8 @@ terraform {
 }
 provider "aws" {
     region = "eu-west-3"
-    access_key = "{{env `AWS_ACCESS_KEY`}}"
-    secret_key = "{{env `AWS_SECRET_KEY`}}"
+    access_key = "${var.AWS_ACCESS_KEY}"
+    secret_key = "${var.AWS_SECRET_ACCESS_KEY}"
 }
 
 resource "aws_ecr_repository" "ecr_repo" {
