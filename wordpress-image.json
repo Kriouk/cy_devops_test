@@ -11,7 +11,8 @@
         {
             "type": "docker",
             "image": "{{user `docker_image`}}",
-            "commit": true
+            "commit": true,
+            "changes": "LABEL org.opencontainers.image.source=https://github.com/{{user `github_repo`}}"
         }
     ],
     "provisioners": [
@@ -24,7 +25,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `docker_repository`}}/{{user `github_repo`}}/{{user `docker_image_name`}}",
+                "repository": "{{user `docker_repository`}}/{{user `registry_username`}}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
