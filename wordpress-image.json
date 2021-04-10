@@ -24,7 +24,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `registry_username`}}/{{user `docker_image_name`}}",
+                "repository": "{{user `docker_repository`}}/{{user `registry_username`}}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
