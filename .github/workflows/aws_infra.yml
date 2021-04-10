@@ -66,6 +66,9 @@ jobs:
             backend "s3" {
               bucket = "cycloid-tf-state-bucket"
               key = "states/terraform.tfstate"
+              access_key = "${{ secrets.AWS_ACCESS_KEY }}"
+              secret_key = "${{ secrets.AWS_SECRET_KEY }}"
+              region = "${{ secrets.AWS_REGION }}"
             }
           }
           EOF
@@ -75,7 +78,7 @@ jobs:
       - run: rm -rf .terraform/
 
       - name: Using terraform init
-        run: terraform init -force-copy -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" -backend-config="region=${{ secrets.AWS_REGION }}"
+        run: terraform init -force-copy
 
       - name: Using terraform plan
         run: terraform plan -no-color
