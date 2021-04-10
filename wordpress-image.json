@@ -17,7 +17,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": "apt update"
+            "inline": "apt update && apt install wordpress -y"
         }
     ],
     "post-processors": [
