@@ -10,7 +10,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    name: Build with Packer
+    name: Declare infrastructure
 
     steps:
       - name: Checkout Repository
