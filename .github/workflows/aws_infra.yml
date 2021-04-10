@@ -40,8 +40,6 @@ jobs:
           }
           EOF
 
-      - run: cat main.tf
-
       - run: terraform get -update
 
       - run: terraform init -backend=false
@@ -72,8 +70,6 @@ jobs:
             }
           }
           EOF
-
-      - run: cat main.tf
 
       - run: rm -rf .terraform/
 
