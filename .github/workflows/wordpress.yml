@@ -55,6 +55,7 @@ jobs:
   ecr:
     runs-on: ubuntu-latest
     name: Push image to ECR repository
+    needs: packer
 
     steps:
       - name: Set up Docker Buildx
@@ -90,4 +91,4 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: testing2
         run: |
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:wordpress-image:dev
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY/wordpress-image:dev
