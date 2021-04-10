@@ -1,17 +1,10 @@
 ---
-
 name: Generating Wordpress Image
 
 on:
   push:
     branches:
       - dev
-
-env:
-  GITHUB_USER: ${{ env.GITHUB_ACTOR }}
-  GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
-  GITHUB_REPO: ${{ env.GITHUB_REPOSITORY }}
-  GITHUB_REPOSITORY: "ghcr.io"
 
 jobs:
   packer:
@@ -54,13 +47,16 @@ jobs:
         run: packer build -color=false -on-error=abort wordpress-image.json
         env:
           PACKER_LOG: 1
+          GITHUB_USER: ${{ env.GITHUB_ACTOR }}
+          GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ env.GITHUB_REPOSITORY }}
+          GITHUB_REPOSITORY: "ghcr.io"
 
   ecr:
     runs-on: ubuntu-latest
     name: Push image to ECR repository
 
     steps:
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -75,4 +71,3 @@ jobs:
       - name: Pull the generated image stored on GitHub
         run: |
           docker pull ghcr.io/chammach/wordpress-image
-
