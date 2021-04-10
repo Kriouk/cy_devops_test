@@ -75,7 +75,8 @@ jobs:
       - run: rm -rf .terraform/
 
       - name: Using terraform init
-        run: terraform init -reconfigure -force-copy \
+        run: |
+          terraform init -reconfigure -force-copy \
           -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
           -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -backend-config="secret_key=${{ secrets.AWS_REGION }}"
