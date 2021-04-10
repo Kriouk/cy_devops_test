@@ -12,7 +12,7 @@ terraform {
   backend "s3" {
     bucket = "tf-state-bucket"
     key    = "states/terraform.state"
-    region = var.aws_region
+    region = "eu-west-3"
   }
 }
 provider "aws" {
