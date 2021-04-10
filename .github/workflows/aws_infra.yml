@@ -10,7 +10,12 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    name: Declare infrastructure
+    name: Amazon ECR
+    env:
+          TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
+          TF_VAR_ecr_repository_name: ${{ secrets.ECR_REPOSITORY_NAME }}
 
     steps:
       - name: Checkout Repository
@@ -27,17 +32,7 @@ jobs:
 
       - name: Using terraform plan
         run: terraform plan -no-color
-        env:
-          TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
-          TF_VAR_ecr_repository_name: ${{ secrets.ECR_REPOSITORY_NAME }}
 
       # create ECR Repository
       - name: Create ECR Repository
         run: terraform apply -auto-approve
-        env:
-          TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-          TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
-          TF_VAR_ecr_repository_name: ${{ secrets.ECR_REPOSITORY_NAME }}
