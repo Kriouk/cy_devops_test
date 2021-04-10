@@ -9,11 +9,6 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3" {
-    bucket = "tf-state-bucket"
-    key    = "states/terraform.state"
-    region = "eu-west-3"
-  }
 }
 provider "aws" {
     region = var.aws_region
@@ -36,6 +31,14 @@ resource "aws_s3_bucket" "b" {
     enabled = true #best practice for recovering tf-state on the S3 bucket in case of an accident
   }
 
+}
+
+terraform {
+    backend "s3" {
+    bucket = "tf-state-bucket"
+    key    = "states/terraform.state"
+    region = "eu-west-3"
+  }
 }
 
 #ECR
