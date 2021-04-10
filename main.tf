@@ -20,7 +20,7 @@ provider "aws" {
 #S3 bucket for Terraform state file
 resource "aws_s3_bucket" "b" {
 
-  bucket = "tf-state-bucket"
+  bucket = "cy_tf-state-bucket"
   acl    = "private"
 
   tags = {
