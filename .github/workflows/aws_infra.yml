@@ -35,22 +35,20 @@ jobs:
 
       - run: terraform apply backend.plan
 
-
-
       - run: |
           cat >> main.tf << EOF
-          terraform {
-            required_providers {
-              aws = {
-                source  = "hashicorp/aws"
-                version = "~> 3.0"
-              }
-            }
-            backend "s3" {
-              bucket = "cycloid-tf-state-bucket"
-              key = "states/terraform.tfstate"
-            }
-          }
+          terraform { \
+            required_providers { \
+              aws = { \
+                source  = "hashicorp/aws" \
+                version = "~> 3.0" \
+              } \
+            } \
+            backend "s3" { \
+              bucket = "cycloid-tf-state-bucket" \
+              key = "states/terraform.tfstate" \
+            } \
+          } \
           EOF
 
       - name: Using terraform init
