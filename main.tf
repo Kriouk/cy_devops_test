@@ -17,7 +17,7 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend s3 {
+  backend "s3" {
     bucket = "cycloid-tf-state-bucket"
     key = "states/terraform.tfstate"
     dynamodb_table = "terraform-lock"
