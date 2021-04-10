@@ -39,13 +39,12 @@ jobs:
 
       - name: Using terraform init
         run: |
-          terraform init \
+          terraform init -reconfigure \
             -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
             -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
             -backend-config="bucket=cycloid-tf-state-bucket" \
-            -backend-config="key=states/terraform.state" \
-            -backend-config="region=${{ secrets.AWS_REGION }}" #trick to use a variable here because it's not possible in a manifest
-
+            -backend-config="key=states/terraform.tfstate" \
+            -backend-config="region=${{ secrets.AWS_REGION }}"
 
       - name: Using terraform plan
         run: terraform plan -no-color
