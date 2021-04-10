@@ -51,6 +51,7 @@ jobs:
               key = "states/terraform.tfstate"
               access_key = "${{ secrets.AWS_ACCESS_KEY }}"
               secret_key = "${{ secrets.AWS_SECRET_KEY }}"
+              region = "${{ secrets.AWS_REGION }}"
             }
           }
           EOF
@@ -58,10 +59,7 @@ jobs:
       - run: cat main.tf
 
       - name: Using terraform init
-        run: |
-          terraform init -reconfigure \
-            -backend-config="region=${{ secrets.AWS_REGION }}" \
-            -force-copy
+        run: terraform init -reconfigure -force-copy
 
       - name: Using terraform plan
         run: terraform plan -no-color
