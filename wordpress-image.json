@@ -1,6 +1,6 @@
 {
     "variables": {
-        "github_repository": "{{env `GITHUB_REPOSITORY`}}",
+        "github_registry": "{{env `GITHUB_REGISTRY_URL`}}",
         "github_username": "{{env `GITHUB_USER`}}",
         "github_password": "{{env `GITHUB_PASS`}}",
         "github_repo": "{{env `GITHUB_REPO`}}",
@@ -24,7 +24,7 @@
         [
             {
                 "type": "docker-tag",
-                "repository": "{{user `github_repository`}}/{{user `github_username`}}/{{user `docker_image_name`}}",
+                "repository": "{{user `github_registry`}}/{{user `github_username`}}/{{user `docker_image_name`}}",
                 "tag": "dev"
             },
             {
@@ -32,7 +32,7 @@
                 "login": true,
                 "login_username": "{{user `github_username`}}",
                 "login_password": "{{user `github_password`}}",
-                "login_server": "https://{{user `github_repository`}}"
+                "login_server": "https://{{user `github_registry`}}"
             }
         ]
     ]
