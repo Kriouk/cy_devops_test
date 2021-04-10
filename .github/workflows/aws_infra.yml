@@ -58,6 +58,8 @@ jobs:
 
       - run: cat main.tf
 
+      - run: rm -r .terraform/
+
       - name: Using terraform init
         run: terraform init -reconfigure -force-copy
 
