@@ -95,5 +95,5 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #URL
           ECR_REPOSITORY_NAME: ${{ secrets.ECR_REPOSITORY_NAME }} #REPO NAME
         run: |
-          docker tag ${{ secrets.REGISTRY_URL }}/${{ env.GITHUB_ACTOR }}${{ secrets.DOCKER_IMAGE_NAME }}:latest $ECR_REGISTRY/$ECR_REPOSITORY_NAME:latest
+          docker tag ${{ secrets.REGISTRY_URL }}/${{ env.GITHUB_ACTOR }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest $ECR_REGISTRY/$ECR_REPOSITORY_NAME:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY_NAME:latest
