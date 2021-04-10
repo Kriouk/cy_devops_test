@@ -52,6 +52,8 @@ jobs:
           } \
           EOF
 
+      - run: cat main.tf
+
       - name: Using terraform init
         run: |
           terraform init -reconfigure \
