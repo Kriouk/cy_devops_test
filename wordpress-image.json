@@ -1,6 +1,6 @@
 {
     "variables": {
-        "github_repository": "{{env `DOCKER_REPOSITORY`}}",
+        "github_repository": "{{env `GITHUB_REPOSITORY`}}",
         "github_username": "{{env `GITHUB_USER`}}",
         "github_password": "{{env `GITHUB_PASS`}}",
         "github_repo": "{{env `GITHUB_REPO`}}",

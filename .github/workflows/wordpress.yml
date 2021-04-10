@@ -70,4 +70,4 @@ jobs:
       # Pull the generated image stored on GitHub
       - name: Pull the generated image stored on GitHub
         run: |
-          docker pull ghcr.io/chammach/wordpress-image
+          docker pull ghcr.io/chammach/wordpress-image:dev
