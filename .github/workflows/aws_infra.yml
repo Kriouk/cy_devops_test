@@ -1,0 +1,35 @@
+---
+
+name: Creating the infrastructure
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    name: Build with Packer
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+
+      # use Terraform in the Runner environment
+      - name: Use latest Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - run: terraform init
+
+      - id: plan
+        run: terraform plan -no-color
+
+      # create ECR Repository
+      - name: Create ECR Repository
+        run: terraform apply
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}

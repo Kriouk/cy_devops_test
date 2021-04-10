@@ -1,6 +1,6 @@
 ---
 
-name: Packer
+name: Generating Wordpress Image
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   packer:
     runs-on: ubuntu-latest
-    name: packer
+    name: Build with Packer
 
     steps:
       - name: Checkout Repository
@@ -33,6 +33,7 @@ jobs:
           arguments: -syntax-only
           target: wordpress-image.json
 
+      # make GitHub Repository (owner/repository name) in lowercase
       - name: GitHub Repository in lowercase
         run: |
           echo GITHUB_REPOSITORY=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
