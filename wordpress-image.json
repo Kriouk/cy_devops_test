@@ -17,7 +17,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": "echo test"
+            "inline": "apt update"
         }
     ],
     "post-processors": [
