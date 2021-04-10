@@ -3,12 +3,6 @@ variable "aws_secret_key" {}
 variable "aws_region" {}
 variable "ecr_repository_name" {}
 
-module "backend" {
-  source = "github.com/samstav/terraform-aws-backend"
-  backend_bucket = "cycloid-tf-state-bucket"
-  # using options, e.g. if you dont want a dynamodb lock table, uncomment this:
-  dynamodb_lock_table_enabled = false
-}
 provider "aws" {
     region = var.aws_region
     access_key = var.aws_access_key

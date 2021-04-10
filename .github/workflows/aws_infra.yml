@@ -27,6 +27,19 @@ jobs:
       - name: Use latest Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - run: cp main.tf main2.tf
+
+      - run: |
+          cat >> main.tf << EOF
+
+          module "backend" {
+            source = "github.com/samstav/terraform-aws-backend"
+            backend_bucket = "cycloid-tf-state-bucket"
+            # using options, e.g. if you dont want a dynamodb lock table, uncomment this:
+            dynamodb_lock_table_enabled = false
+          }
+          EOF
+
       - run: terraform get -update
 
       - run: terraform init -backend=false
@@ -35,6 +48,8 @@ jobs:
 
       - run: terraform apply backend.plan
         continue-on-error: true
+
+      - run: rm main.cf && mv main2.cf main.cf
 
       - run: |
           cat >> main.tf << EOF
@@ -61,7 +76,7 @@ jobs:
       - run: rm -rf .terraform/
 
       - name: Using terraform init
-        run: terraform init -force-copy
+        run: terraform init -reconfigure -force-copy
 
       - name: Using terraform plan
         run: terraform plan -no-color
