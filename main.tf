@@ -33,14 +33,6 @@ resource "aws_s3_bucket" "b" {
 
 }
 
-terraform {
-    backend "s3" {
-    bucket = "tf-state-bucket"
-    key    = "states/terraform.state"
-    region = "eu-west-3"
-  }
-}
-
 #ECR
 resource "aws_ecr_repository" "ecr_repo" {
   name                 = var.ecr_repository_name

@@ -27,8 +27,24 @@ jobs:
       - name: Use latest Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - run: terraform get -update
+
+      - run: terraform init -backend=false
+
+      - run: terraform plan -out=backend.plan -target=module.backend
+
+      - run: terraform apply backend.plan
+
+      - run: echo 'terraform { backend "s3" {} }' > main.tf
+
       - name: Using terraform init
-        run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}"
+        run: terraform init \
+          -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
+          -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
+          -backend-config="bucket=tf-state-bucket" \
+          -backend-config="key=states/terraform.state" \
+          -backend-config="region=${{ secrets.AWS_REGION }}" #trick to use a variable here because it's not possible in a manifest
+
 
       - name: Using terraform plan
         run: terraform plan -no-color
