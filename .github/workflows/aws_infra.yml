@@ -35,7 +35,8 @@ jobs:
 
       - run: terraform apply backend.plan
 
-      - run: echo 'terraform { backend "s3" {} }' >> main.tf
+      - name: Test
+        run: echo 'terraform { backend "s3" {} }' >> main.tf
 
       - name: Using terraform init
         run: |
