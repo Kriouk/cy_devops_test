@@ -37,19 +37,19 @@ jobs:
         continue-on-error: true
 
       - run: |
-          cat >> main.tf << EOF \
-          terraform { \
-            required_providers { \
-              aws = { \
-                source  = "hashicorp/aws" \
-                version = "~> 3.0" \
-              } \
-            } \
-            backend "s3" { \
-              bucket = "cycloid-tf-state-bucket" \
-              key = "states/terraform.tfstate" \
-            } \
-          } \
+          cat >> main.tf << EOF
+          terraform {
+            required_providers {
+              aws = {
+                source  = "hashicorp/aws"
+                version = "~> 3.0"
+              }
+            }
+            backend "s3" {
+              bucket = "cycloid-tf-state-bucket"
+              key = "states/terraform.tfstate"
+            }
+          }
           EOF
 
       - run: cat main.tf
