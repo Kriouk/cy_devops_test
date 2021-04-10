@@ -91,4 +91,5 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: testing2
         run: |
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY/wordpress-image:dev
+          docker tag wordpress-image:dev $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
