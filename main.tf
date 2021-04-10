@@ -9,21 +9,6 @@ module "backend" {
   # using options, e.g. if you dont want a dynamodb lock table, uncomment this:
   dynamodb_lock_table_enabled = false
 }
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-  backend "s3" {
-    bucket = "cycloid-tf-state-bucket"
-    key = "states/terraform.tfstate"
-    dynamodb_table = "terraform-lock"
-    encrypt = "true"
-  }
-}
 provider "aws" {
     region = var.aws_region
     access_key = var.aws_access_key

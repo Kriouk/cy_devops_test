@@ -35,6 +35,8 @@ jobs:
 
       - run: terraform apply backend.plan
 
+      - run: echo 'terraform { required_providers { aws = { source  = "hashicorp/aws" version = "~> 3.0" } } backend "s3" { bucket = "cycloid-tf-state-bucket" key = "states/terraform.tfstate" } }' >> main.tf
+
       - name: Using terraform init
         run: |
           terraform init -reconfigure \
