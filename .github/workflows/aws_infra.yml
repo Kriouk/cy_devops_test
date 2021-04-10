@@ -27,7 +27,7 @@ jobs:
       - name: Use latest Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - run: cp main.tf main2.tf
+      - run: cp main.tf main2
 
       - run: |
           cat >> main.tf << EOF
@@ -51,7 +51,7 @@ jobs:
       - run: terraform apply backend.plan
         continue-on-error: true
 
-      - run: rm main.cf && mv main2.cf main.cf
+      - run: rm main.tf && mv main2 main.tf
 
       - run: |
           cat >> main.tf << EOF
