@@ -40,6 +40,8 @@ jobs:
           }
           EOF
 
+      - run: cat main.tf
+
       - run: terraform get -update
 
       - run: terraform init -backend=false
