@@ -2,7 +2,7 @@ module "vpc" {
     source  = "terraform-aws-modules/vpc/aws"
     version = "~> 2"
 
-    name = testing-mysql
+    name = "testing-mysql"
     cidr = "10.99.0.0/18"
 
     azs              = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
