@@ -16,7 +16,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": ["apt install python -y"]
+            "inline": ["apt-get -y update && apt-get install -y python-minimal"]
         },
         {
             "type": "ansible",
