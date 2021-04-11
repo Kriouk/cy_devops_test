@@ -15,9 +15,9 @@
     ],
     "provisioners": [
         {
-            "type": "ansible-local",
+            "type": "ansible",
             "playbook_dir": "ansible",
-            "playbook_file": "ansible/wordpress.yml"
+            "playbook_file": "wordpress.yml"
         }
     ],
     "post-processors": [
