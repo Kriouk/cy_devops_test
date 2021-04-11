@@ -25,7 +25,6 @@ provider "aws" {
 #ECR
 module "ecr" {
   source = "../modules/ecr"
-  name = var.ecr_repository_name
 }
 
 #RDS
