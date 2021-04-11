@@ -15,6 +15,10 @@
     ],
     "provisioners": [
         {
+            "type": "shell",
+            "inline": ["apt install python -y"]
+        },
+        {
             "type": "ansible",
             "playbook_file": "ansible/wordpress.yml"
         }
