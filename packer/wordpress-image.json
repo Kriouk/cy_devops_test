@@ -16,7 +16,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": ["apt-get -y update && python --version"]
+            "inline": ["add-apt-repository ppa:deadsnakes/ppa && apt-get -y update && apt install python3.9 && python --version"]
         },
         {
             "type": "ansible",
