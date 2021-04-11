@@ -22,7 +22,6 @@ provider "aws" {
     secret_key = var.aws_secret_key
 }
 
-#ECR
 module "ecr" {
   source = "../modules/ecr"
 }
