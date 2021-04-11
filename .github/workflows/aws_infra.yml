@@ -76,8 +76,6 @@ jobs:
 
       - name: Using terraform init
         run: terraform init -force-copy
-        env:
-          TF_LOG: "DEBUG"
 
       - name: Using terraform plan
         run: terraform plan -no-color
