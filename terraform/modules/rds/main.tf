@@ -22,7 +22,7 @@ module "rds" {
   port                   = 3306
 
   subnet_ids             = module.vpc.database_subnets
-  vpc_security_group_ids = [module.vpc.security_group.testing-mysql.id]
+  vpc_security_group_ids = [module.vpc.vpc_default_security_group_id]
 
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
