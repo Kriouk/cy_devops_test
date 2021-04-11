@@ -18,7 +18,7 @@ jobs:
           ref: dev
 
       - name: Installing Ansible on the runner
-        run: apt-get install -y ansible
+        run: sudo apt-get install ansible
 
       # fix backwards incompatibilities in template
       - name: Fix Template
