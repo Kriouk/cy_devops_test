@@ -77,7 +77,7 @@ jobs:
       - run: cat main.tf
 
       - name: Using terraform init
-        run: echo "no" | terraform init
+        run: terraform init -force-copy
 
       - name: Using terraform plan
         run: terraform plan -no-color
