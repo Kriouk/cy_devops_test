@@ -43,7 +43,7 @@ jobs:
 
       # build Docker image
       - name: Build Image and push it on the GitHub Repository
-        run: packer build -color=false -on-error=abort wordpress-image.json
+        run: packer build -color=false -on-error=abort packer/wordpress-image.json
         env:
           PACKER_LOG: 1
           GITHUB_USER: ${{ env.GITHUB_ACTOR }}
