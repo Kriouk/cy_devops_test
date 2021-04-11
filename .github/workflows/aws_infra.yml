@@ -67,7 +67,7 @@ jobs:
               access_key = "${{ secrets.AWS_ACCESS_KEY }}"
               secret_key = "${{ secrets.AWS_SECRET_KEY }}"
               region = "${{ secrets.AWS_REGION }}"
-              encrypt = 1
+              encrypt = true
             }
           }
           EOF
