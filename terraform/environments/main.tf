@@ -34,4 +34,6 @@ module "vpc" {
 #RDS
 module "rds" {
    source = "../modules/rds"
+   subnet_ids   = module.vpc.database_subnets
+   vpc_security_group_ids = [module.vpc.database_subnets]
  }
