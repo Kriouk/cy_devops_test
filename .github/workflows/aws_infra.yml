@@ -75,7 +75,7 @@ jobs:
       - run: rm -rf .terraform/
 
       - name: Using terraform init
-        run: terraform init -force-copy
+        run: terraform init -reconfigure
 
       - name: Using terraform plan
         run: terraform plan -no-color
