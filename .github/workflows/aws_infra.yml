@@ -76,6 +76,8 @@ jobs:
 
       - run: cat main.tf
 
+      - run: terraform refresh
+
       - name: Using terraform init
         run: terraform init --reconfigure
 
