@@ -2,7 +2,8 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
 variable "ecr_repository_name" {}
- terraform {
+variable "rds_name" {}
+terraform {
     required_providers {
         aws = {
           source  = "hashicorp/aws"
@@ -22,13 +23,17 @@ provider "aws" {
 }
 
 #ECR
-resource "aws_ecr_repository" "ecr_repo" {
-  name                 = var.ecr_repository_name
-  image_tag_mutability = "MUTABLE"
-
-  #image_scanning_configuration {
-  #  scan_on_push = true
-  #}
+module "ecr" {
+  source = "../modules/ecr"
+  name = var.name
 }
 
 #RDS
+
+# module "rds" {
+#   source = "../modules/rds"
+# }
+
+# module "vpc" {
+#   source = "../../modules/vpc"
+# }

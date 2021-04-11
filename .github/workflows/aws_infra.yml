@@ -27,7 +27,7 @@ jobs:
       - name: Use latest Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Using terraform init with GitHub variables
+      - name: Using terraform init
         run: |
           terraform init \
           -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
