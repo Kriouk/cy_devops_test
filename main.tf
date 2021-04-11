@@ -12,9 +12,9 @@ variable "ecr_repository_name" {}
     backend "s3" {
         bucket = "cycloid-tf-state-bucket"
         key = "states/terraform.tfstate"
-        access_key = "${{ secrets.AWS_ACCESS_KEY }}"
-        secret_key = "${{ secrets.AWS_SECRET_KEY }}"
-        region = "${{ secrets.AWS_REGION }}"
+        access_key = var.aws_access_key
+        secret_key = var.aws_secret_key
+        region = var.region
         encrypt = true
     }
 }
