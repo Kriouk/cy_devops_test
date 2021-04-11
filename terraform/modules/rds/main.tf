@@ -1,4 +1,8 @@
 module "rds" {
+
+  variable "database_subnets" { type = list(string) }
+  variable "default_security_group_id" { type = string }
+
   source  = "terraform-aws-modules/rds/aws"
   version = "2.34.0"
 
