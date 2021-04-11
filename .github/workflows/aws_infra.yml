@@ -28,7 +28,11 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Using terraform init
-        run: terraform init
+        run: |
+          terraform init \
+          -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
+          -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
+          -backend-config="region=${{ secrets.AWS_REGION }}"
 
       - name: Using terraform plan
         run: terraform plan -no-color
