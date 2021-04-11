@@ -36,8 +36,8 @@ jobs:
           terraform/environments
 
       - name: Using terraform plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color terraform/environments
 
       # create ECR Repository
       - name: Create ECR Repository
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve terraform/environments
