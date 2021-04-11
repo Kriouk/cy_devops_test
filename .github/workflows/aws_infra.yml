@@ -27,29 +27,6 @@ jobs:
       - name: Use latest Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - run: |
-          cat >> main.tf << EOF
-
-          terraform {
-            required_providers {
-              aws = {
-                source  = "hashicorp/aws"
-                version = "~> 3.0"
-              }
-            }
-            backend "s3" {
-              bucket = "cycloid-tf-state-bucket"
-              key = "states/terraform.tfstate"
-              access_key = "${{ secrets.AWS_ACCESS_KEY }}"
-              secret_key = "${{ secrets.AWS_SECRET_KEY }}"
-              region = "${{ secrets.AWS_REGION }}"
-              encrypt = true
-            }
-          }
-          EOF
-
-      - run: cat main.tf
-
       - name: Using terraform init
         run: terraform init
 
