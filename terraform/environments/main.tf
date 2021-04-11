@@ -2,7 +2,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
 variable "ecr_repository_name" {}
-variable "rds_name" {}
+#variable "rds_name" {}
 terraform {
     required_providers {
         aws = {
@@ -25,7 +25,7 @@ provider "aws" {
 #ECR
 module "ecr" {
   source = "../modules/ecr"
-  name = var.name
+  name = var.ecr_repository_name
 }
 
 #RDS
