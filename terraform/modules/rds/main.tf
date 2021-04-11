@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../modules/vpc"
+  source = "../vpc"
 }
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
