@@ -42,15 +42,6 @@ jobs:
 
       - run: terraform get -update
 
-      - run: terraform init -backend=false
-
-      - run: terraform plan -out=backend.plan -target=module.backend
-
-      - run: terraform apply backend.plan
-        continue-on-error: true
-
-      - run: rm main.tf && mv main2 main.tf
-
       - run: |
           cat >> main.tf << EOF
 
@@ -71,12 +62,6 @@ jobs:
             }
           }
           EOF
-
-      - run: rm -rf .terraform/
-
-      - run: cat main.tf
-
-      - run: terraform refresh
 
       - name: Using terraform init
         run: terraform init --reconfigure
