@@ -27,7 +27,7 @@ module "ecr" {
 }
 
 module "vpc" {
-   source = "../../modules/vpc"
+   source = "../modules/vpc"
 }
 
 
