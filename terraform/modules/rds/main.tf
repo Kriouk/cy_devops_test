@@ -59,7 +59,7 @@ module "rds" {
 
   name                   = "testingdb"
   username               = "dbuser"
-  password               = "test123"
+  password               = "test123456"
   port                   = 3306
 
   subnet_ids             = module.vpc.database_subnets
