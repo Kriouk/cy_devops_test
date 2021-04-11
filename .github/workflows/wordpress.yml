@@ -22,7 +22,7 @@ jobs:
         uses: hashicorp/packer-github-actions@master
         with:
           command: fix
-          target: wordpress-image.json
+          target: packer/wordpress-image.json
 
       # validate templates
       - name: Validate Template
@@ -30,7 +30,7 @@ jobs:
         with:
           command: validate
           arguments: -syntax-only
-          target: wordpress-image.json
+          target: packer/wordpress-image.json
 
       # make GitHub Username in lowercase
       - name: GitHub Username in lowercase
