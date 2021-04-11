@@ -17,6 +17,9 @@ jobs:
         with:
           ref: dev
 
+      - name: Installing Ansible on the runner
+        run: apt-get install -y ansible
+
       # fix backwards incompatibilities in template
       - name: Fix Template
         uses: hashicorp/packer-github-actions@master
