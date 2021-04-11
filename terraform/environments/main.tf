@@ -26,12 +26,13 @@ module "ecr" {
   source = "../modules/ecr"
 }
 
+module "vpc" {
+   source = "../../modules/vpc"
+}
+
+
 #RDS
 
 # module "rds" {
 #   source = "../modules/rds"
-# }
-
-# module "vpc" {
-#   source = "../../modules/vpc"
 # }
