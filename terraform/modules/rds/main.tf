@@ -1,22 +1,27 @@
-# module "rds" {
-#   source  = "terraform-aws-modules/rds/aws"
-#   version = "2.34.0"
-#   # insert the 29 required variables here
+module "rds" {
+  source  = "terraform-aws-modules/rds/aws"
+  version = "2.34.0"
 
-# resource "aws_db_instance" "rdsinstance" {
-# allocated_storage    = 5
-# storage_type         = "gp2"
-# engine               = "mysql"
-# engine_version       = "5.7"
-# instance_class       = "db.t2.micro"
-# name                 = "mydb"
-# username             = "admin"
-# password             = "abcd1234"
-# parameter_group_name = "default.mysql5.7"
-# skip_final_snapshot  = true
-# auto_minor_version_upgrade = true
-# vpc_security_group_ids = [aws_security_group.rdssecure.id]
-# publicly_accessible = true
-# port = 3306
-# }
-# }
+  identifier = "testing-mysql-default"
+
+  create_db_option_group    = false
+  create_db_parameter_group = false
+
+  # All available versions: http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt
+  engine               = "mysql"
+  engine_version       = "8.0.20"
+  family               = "mysql8.0" # DB parameter group
+  major_engine_version = "8.0"      # DB option group
+  instance_class       = "db.t2.micro"
+
+  allocated_storage = 5
+
+  name                   = "testingdb"
+  username               = "dbuser"
+  password               = "test123"
+  port                   = 3306
+
+  subnet_ids             = module.vpc.database_subnets
+  vpc_security_group_ids = [module.security_group.testing-mysql.id]
+
+}

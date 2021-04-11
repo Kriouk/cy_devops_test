@@ -38,6 +38,6 @@ jobs:
       - name: Using terraform plan
         run: terraform plan -no-color terraform/environments
 
-      # create ECR Repository
-      - name: Create ECR Repository
+      # create the AWS infrastructure needed
+      - name: AWS infrastructure
         run: terraform apply -auto-approve terraform/environments
