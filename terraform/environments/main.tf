@@ -26,18 +26,23 @@ module "ecr" {
   source = "../modules/ecr"
 }
 
-# module "vpc" {
-#    source = "../modules/vpc"
-# }
+module "vpc" {
+    source = "../modules/vpc"
+}
 
+module "security_group" {
+    source = "../modules/sg"
+    vpc_id = module.vpc.vpc_id
+    vpc_cidr_block = module.vpc.vpc_cidr_block
+}
 
 #RDS
 module "rds" {
    source = "../modules/rds"
-   #subnet_ids   = module.vpc.database_subnets
-   #vpc_security_group_ids = [module.vpc.database_subnets]
- }
+   vpc_database_subnets   = module.vpc.database_subnets
+   vpc_default_security_group_id = [module.vpc.default_security_group_id]
+}
 
-#  module "ecs" {
+#module "ecs" {
 #    source = "../modules/ecs"
-#  }
+#}
