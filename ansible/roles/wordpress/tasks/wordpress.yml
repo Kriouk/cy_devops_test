@@ -1,9 +1,9 @@
 ---
-- name: download Wordpress on /tmp
-  get_url:
-    url: "https://wordpress.org/latest.tar.gz"
-    force: no
-    dest: "/tmp/wordpress.tar.gz"
+# - name: download Wordpress on /tmp
+#   get_url:
+#     url: "https://wordpress.org/latest.tar.gz"
+#     force: no
+#     dest: "/tmp/wordpress.tar.gz"
 
 - name: create Wordpress directory
   file:

@@ -52,7 +52,7 @@ jobs:
       - name: Build Image and push it on the GitHub Repository
         run: packer build -color=false -on-error=abort packer/wordpress-image.json
         env:
-          PACKER_LOG: 1
+          PACKER_LOG: 0
           GITHUB_USER: ${{ env.GITHUB_ACTOR }}
           GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REGISTRY_URL: "${{ secrets.REGISTRY_URL }}"
