@@ -16,9 +16,9 @@ module "rds" {
 
   allocated_storage = 5
 
-  name                   = "testingdb"
-  username               = "dbuser"
-  password               = "test123456"
+  name                   = var.rds_name
+  username               = var.rds_user
+  password               = var.rds_pass
   port                   = 3306
 
   subnet_ids             = var.vpc_database_subnets

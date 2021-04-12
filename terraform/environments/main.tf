@@ -3,7 +3,10 @@ variable "aws_secret_key" {}
 variable "aws_region" {}
 variable "ecr_repository_name" {}
 variable "s3_bucket_name" {}
-#variable "rds_name" {}
+variable "rds_name" {}
+variable "rds_user" {}
+variable "rds_pass" {}
+
 terraform {
     required_providers {
         aws = {
@@ -42,6 +45,9 @@ module "rds" {
    source = "../modules/rds"
    vpc_database_subnets   = module.vpc.database_subnets
    vpc_default_security_group_id = module.vpc.default_security_group_id
+   rds_name = var.rds_name
+   rds_user = var.rds_user
+   rds_pass = var.rds_pass
 }
 
 #module "ecs" {
