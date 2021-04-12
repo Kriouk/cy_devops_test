@@ -2,6 +2,7 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
 variable "ecr_repository_name" {}
+variable "s3_bucket_name" {}
 #variable "rds_name" {}
 terraform {
     required_providers {
@@ -11,7 +12,7 @@ terraform {
         }
     }
     backend "s3" {
-        bucket = "cycloid-tf-state-bucket"
+        bucket = var.s3_bucket_name
         key = "states/terraform.tfstate"
         encrypt = true
     }
