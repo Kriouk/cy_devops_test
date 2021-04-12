@@ -1,7 +1,7 @@
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
 
-  name = "my-ecs"
+  name = "cy-test-ecs"
 
   container_insights = true
 
