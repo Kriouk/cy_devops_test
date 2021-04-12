@@ -37,3 +37,7 @@ module "rds" {
    #subnet_ids   = module.vpc.database_subnets
    #vpc_security_group_ids = [module.vpc.database_subnets]
  }
+
+#  module "ecs" {
+#    source = "../modules/ecs"
+#  }
