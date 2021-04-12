@@ -40,7 +40,7 @@ module "security_group" {
 module "rds" {
    source = "../modules/rds"
    vpc_database_subnets   = module.vpc.database_subnets
-   vpc_default_security_group_id = [module.vpc.default_security_group_id]
+   vpc_default_security_group_id = module.vpc.default_security_group_id
 }
 
 #module "ecs" {
