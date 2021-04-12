@@ -15,6 +15,9 @@ jobs:
         TF_VAR_aws_region: ${{ secrets.AWS_REGION }}
         TF_VAR_ecr_repository_name: ${{ secrets.ECR_REPOSITORY_NAME }}
         TF_VAR_s3_bucket_name: ${{ secrets.S3_BUCKET_NAME }}
+        TF_VAR_rds_name: ${{ secrets.RDS_NAME }}
+        TF_VAR_rds_user: ${{ secrets.RDS_USER }}
+        TF_VAR_rds_pass: ${{ secrets.RDS_PASS }}
 
     steps:
       - name: Checkout Repository
