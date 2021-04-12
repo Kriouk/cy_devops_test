@@ -2,7 +2,7 @@ module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 3"
 
-  name        = "testing-mysql"
+  name        = "sg-mysql"
   description = "Complete MySQL example security group"
   vpc_id      = var.vpc_id
 

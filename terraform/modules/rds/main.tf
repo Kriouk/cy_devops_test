@@ -2,7 +2,7 @@ module "rds" {
   source  = "terraform-aws-modules/rds/aws"
   version = "2.34.0"
 
-  identifier = "testing-mysql-default"
+  identifier = "rds-mysql"
 
   create_db_option_group    = false
   create_db_parameter_group = false
