@@ -34,6 +34,7 @@ jobs:
           -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
           -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
           -backend-config="region=${{ secrets.AWS_REGION }}" \
+          -backend-config="bucket=${{ secrets.S3_BUCKET_NAME }}" \
           terraform/environments
 
       - name: Using terraform plan

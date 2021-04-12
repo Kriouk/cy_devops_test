@@ -12,7 +12,6 @@ terraform {
         }
     }
     backend "s3" {
-        bucket = var.s3_bucket_name
         key = "states/terraform.tfstate"
         encrypt = true
     }
@@ -25,6 +24,7 @@ provider "aws" {
 
 module "ecr" {
   source = "../modules/ecr"
+  ecr_name = var.ecr_repository_name
 }
 
 module "vpc" {
