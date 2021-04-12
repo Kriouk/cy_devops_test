@@ -50,6 +50,6 @@ module "rds" {
    rds_pass = var.rds_pass
 }
 
-#module "ecs" {
-#    source = "../modules/ecs"
-#}
+module "ecs" {
+    source = "../modules/ecs"
+}
