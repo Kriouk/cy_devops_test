@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - ansible/*
+      - packer/*
 
 jobs:
   packer:
