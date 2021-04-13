@@ -1,0 +1,42 @@
+```mermaid
+graph LR
+subgraph w_s[Workflows Schema]
+
+    GITHUB(GitHub Repository)
+
+    subgraph g_a[GitHub Actions]
+        AWS_Infra[AWS_Infra]:::GA
+        wordpress[wordpress]:::GA
+        nuke[nuke]:::GA
+    end
+    subgraph aws_r[AWS]
+        ECR(ECR):::AWS
+        RDS(RDS):::AWS
+        VPC(VPC/SG):::AWS
+        S3(S3)
+    end
+
+    AWS_Infra -->|Create| RDS & VPC & ECR
+    AWS_Infra ---|Terraform state| S3
+    wordpress-->|Build Docker Image and push to| ECR & GITHUB
+    nuke -->|Destroy | ECR & VPC & RDS
+end
+
+linkStyle 0 stroke:#7ee7a6
+linkStyle 1 stroke:#7ee7a6
+linkStyle 2 stroke:#7ee7a6
+linkStyle 5 stroke:#33a4ea
+linkStyle 4 stroke:#33a4ea
+linkStyle 3 stroke:#33a4ea
+linkStyle 6 stroke:#f66,fill:none,stroke-dasharray:3
+linkStyle 7 stroke:#f66,fill:none,stroke-dasharray:3
+linkStyle 8 stroke:#f66,fill:none,stroke-dasharray:3
+
+classDef GA fill:#6fa,stroke:#333,stroke-width:1px
+classDef AWS fill:#cbf,stroke:#333,stroke-width:1px
+
+style g_a fill:#c5e5f9,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5, 5
+style aws_r fill:#ffdf63,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5, 5
+
+style w_s fill:#fff,stroke:#f66,stroke-width:2px,color:#f66,stroke-dasharray: 3, 3
+```
