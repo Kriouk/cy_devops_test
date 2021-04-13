@@ -1,4 +1,4 @@
-# Cycloid DevOps Test
+# DevOps Test
 Setup a wordpress container on an ECS cluster.
 
 ## Disclaimer
@@ -90,7 +90,7 @@ While I'm not yet familiar with *all* the intricacies of AWS, I think the follow
 
 ### Automation
 
-Further improve the CI / CD with test jobs, image scanning and vulnerability ([with Trivy for example](https://github.com/marketplace/actions/aqua-security-trivy) etc. Then why not increase the use of Ansible (use of Jinja templates, handlers ...) for the generation of the image and the execution of tests. Do not forget Terraform too, which must surely be improved to be reusable for example .
+Further improve the CI / CD with test jobs, image scanning and vulnerability [with Trivy for example](https://github.com/marketplace/actions/aqua-security-trivy) etc. Then why not increase the use of Ansible (use of Jinja templates, handlers ...) for the generation of the image and the execution of tests. Do not forget Terraform too, which must surely be improved to be reusable for example .
 
 ### HA
 
