@@ -4,7 +4,7 @@ name: Generating Wordpress Image
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - ansible/**
       - packer/**
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: main
 
       - name: Installing Ansible on the runner
         run: |
