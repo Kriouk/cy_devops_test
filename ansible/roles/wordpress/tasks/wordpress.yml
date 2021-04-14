@@ -1,0 +1,14 @@
+---
+- name: download Wordpress on /tmp
+  get_url:
+    url: "https://wordpress.org/latest.tar.gz"
+    force: no
+    dest: "/tmp/wordpress.tar.gz"
+
+- name: create Wordpress directory
+  file:
+    path: "/var/www/html/wordpress"
+    owner: www-data
+    group: www-data
+    recurse: yes
+    state: directory

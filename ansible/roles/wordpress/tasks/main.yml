@@ -1,0 +1,6 @@
+---
+# tasks file for wordpress
+
+- include: apache.yml
+- include: php.yml
+- include: wordpress.yml

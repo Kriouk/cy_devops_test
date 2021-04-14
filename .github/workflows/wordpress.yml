@@ -1,0 +1,109 @@
+---
+name: Generating Wordpress Image
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - ansible/**
+      - packer/**
+
+jobs:
+  packer:
+    runs-on: ubuntu-latest
+    name: Build with Packer
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+
+      - name: Installing Ansible on the runner
+        run: |
+          sudo apt update
+          sudo apt install software-properties-common
+          sudo apt-add-repository --yes --update ppa:ansible/ansible
+          sudo apt install ansible
+
+      # fix backwards incompatibilities in template
+      - name: Fix Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: fix
+          target: packer/wordpress-image.json
+
+      # validate templates
+      - name: Validate Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          arguments: -syntax-only
+          target: packer/wordpress-image.json
+
+      # make GitHub Username in lowercase
+      - name: GitHub Username in lowercase
+        run: |
+          echo GITHUB_ACTOR=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+
+      # use Packer in the Runner environment
+      - name: Use latest Packer
+        uses: hashicorp-contrib/setup-packer@v1
+
+      # build Docker image
+      - name: Build Image and push it on the GitHub Repository
+        run: packer build -color=false -on-error=abort packer/wordpress-image.json
+        env:
+          PACKER_LOG: 0
+          GITHUB_USER: ${{ env.GITHUB_ACTOR }}
+          GITHUB_PASS: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REGISTRY_URL: "${{ secrets.REGISTRY_URL }}"
+          DOCKER_IMAGE_NAME: "${{ secrets.DOCKER_IMAGE_NAME }}"
+
+  ecr:
+    runs-on: ubuntu-latest
+    name: Push image to ECR
+    needs: packer
+
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      # make GitHub Username in lowercase
+      - name: GitHub Username in lowercase
+        run: |
+          echo GITHUB_ACTOR=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]') >> $GITHUB_ENV
+
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ env.GITHUB_ACTOR }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Pull the generated image stored on GitHub
+      - name: Pull the generated image stored on GitHub
+        run: |
+          docker pull ${{ secrets.REGISTRY_URL }}/${{ env.GITHUB_ACTOR }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest
+
+      # AWS steps
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #URL
+          ECR_REPOSITORY_NAME: ${{ secrets.ECR_REPOSITORY_NAME }} #REPO NAME
+        run: |
+          docker tag ${{ secrets.REGISTRY_URL }}/${{ env.GITHUB_ACTOR }}/${{ secrets.DOCKER_IMAGE_NAME }}:latest $ECR_REGISTRY/$ECR_REPOSITORY_NAME:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY_NAME:latest

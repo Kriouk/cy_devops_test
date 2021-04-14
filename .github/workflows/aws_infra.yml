@@ -1,9 +1,13 @@
 ---
 
-name: Deleting the infrastructure
+name: Creating the infrastructure
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - dev
+    paths:
+      - terraform/**
 
 jobs:
   terraform:
@@ -38,5 +42,9 @@ jobs:
           -backend-config="bucket=${{ secrets.S3_BUCKET_NAME }}" \
           terraform/environments
 
-      - name: Using terraform destroy
-        run: terraform destroy -auto-approve terraform/environments
+      - name: Using terraform plan
+        run: terraform plan -no-color terraform/environments
+
+      # create the AWS infrastructure needed
+      - name: AWS infrastructure
+        run: terraform apply -auto-approve terraform/environments

@@ -1,0 +1,20 @@
+---
+- name: install PHP and dependancies
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - php
+    - php-mysql
+    - php-common
+    - php-tidy
+    - php-xml
+    - php-xmlrpc
+    - php-mbstring
+    - php-memcached
+    - php-curl
+    - php-zip
+    - php-gd
+    - php-soap
+    - php-intl

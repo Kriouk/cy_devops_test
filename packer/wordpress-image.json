@@ -1,0 +1,47 @@
+{
+    "variables": {
+        "github_registry": "{{env `GITHUB_REGISTRY_URL`}}",
+        "github_username": "{{env `GITHUB_USER`}}",
+        "github_password": "{{env `GITHUB_PASS`}}",
+        "docker_image": "ubuntu:20.04",
+        "docker_image_name": "{{env `DOCKER_IMAGE_NAME`}}"
+    },
+    "builders": [
+        {
+            "type": "docker",
+            "image": "{{user `docker_image`}}",
+            "commit": true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get install -y sudo",
+                "apt-get install -y python3",
+                "python3 --version"
+              ]
+        },
+        {
+            "type": "ansible",
+            "playbook_file": "ansible/wordpress.yml"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "{{user `github_registry`}}/{{user `github_username`}}/{{user `docker_image_name`}}",
+                "tag": "latest"
+            },
+            {
+                "type": "docker-push",
+                "login": true,
+                "login_username": "{{user `github_username`}}",
+                "login_password": "{{user `github_password`}}",
+                "login_server": "https://{{user `github_registry`}}"
+            }
+        ]
+    ]
+}
