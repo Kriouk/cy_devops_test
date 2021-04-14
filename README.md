@@ -1,6 +1,10 @@
 # DevOps Test
 Setup a wordpress container on an ECS cluster.
 
+[![Creating the infrastructure](https://github.com/ChamMach/cy_devops_test/actions/workflows/aws_infra.yml/badge.svg)](https://github.com/ChamMach/cy_devops_test/actions/workflows/aws_infra.yml) 
+[![Generating Wordpress Image](https://github.com/ChamMach/cy_devops_test/actions/workflows/wordpress.yml/badge.svg)](https://github.com/ChamMach/cy_devops_test/actions/workflows/wordpress.yml) 
+[![Deleting the infrastructure](https://github.com/ChamMach/cy_devops_test/actions/workflows/nuke.yml/badge.svg)](https://github.com/ChamMach/cy_devops_test/actions/workflows/nuke.yml)
+
 ## Disclaimer ❗
 
 First of all, I want to be transparent about the conditions for carrying out this test:
