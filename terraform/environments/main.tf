@@ -41,7 +41,6 @@ module "security_group" {
     vpc_cidr_block = module.vpc.vpc_cidr_block
 }
 
-#RDS
 module "rds" {
    source = "../modules/rds"
    vpc_database_subnets   = module.vpc.database_subnets
